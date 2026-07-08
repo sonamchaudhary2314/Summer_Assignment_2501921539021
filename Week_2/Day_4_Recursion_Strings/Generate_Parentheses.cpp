@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+
+    void solve(vector<string>& ans, string current, int open, int close, int n) {
+
+        if (current.length() == 2 * n) {
+            ans.push_back(current);
+            return;
+        }
+
+        if (open < n) {
+            solve(ans, current + "(", open + 1, close, n);
+        }
+
+        if (close < open) {
+            solve(ans, current + ")", open, close + 1, n);
+        }
+    }
+
+
+    vector<string> generateParenthesis(int n) {
+
+        vector<string> ans;
+
+        solve(ans, "", 0, 0, n);
+
+        return ans;
+    }
+};
